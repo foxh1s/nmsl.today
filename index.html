@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>今天您死妈了吗？</title>
+    <title>你妈死了</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -37,19 +37,21 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="row question">
-                    <div class="col-md-6 col-xs-12">
-                        <p class="small">“今天您死妈了吗？”</p>
-                        <p class="big">今天您死了几个妈？</p>
+                    <div class="col-md-6">
+                        <p class="big">“今天您死妈了吗？”</p>
+                        <p class="big">你妈死了</p>
+                        <p class="big">你老母瓜咗</p>
+                        <p class="big">Your mom died</p>
                     </div>
-                    <div class="col-md-6 col-xs-12">
+                    <div class="col-md-6">
                         <img src="1-1.jpg" alt="NMSL你妈死了" class="img-responsive">
                     </div>
                 </div>
                 <div class="row question" style="margin-top: 20px;">
-                    <div class="col-md-6 col-xs-6 text-center">
+                    <div class="col-md-6 col-6 text-center">
                         <button type="button" class="btn btn-success btn-block" id="no">死了</button>
                     </div>
-                    <div class="col-md-6 col-xs-6 text-center">
+                    <div class="col-md-6 col-6 text-center">
                         <button type="button" class="btn btn-danger btn-block" id="ok">没死</button>
                     </div>
                 </div>
@@ -78,7 +80,25 @@
                 alert("今天您死了几个妈？");
                 $(".question").hide();
                 $("#imageContainer").show();
-                $("#dynamicImage").attr("src", "1-2.gif"); // 设置图片源路径为动图
+                var img = new Image();
+                img.src = "1-2.gif";
+                img.onload = function () {
+                    var windowWidth = $(window).width();
+                    var imageWidth = img.width;
+                    if (windowWidth > imageWidth) {
+                        $("#dynamicImage").css({
+                            "width": imageWidth + "px",
+                            "height": "auto"
+                        });
+                    }
+                    else {
+                        $("#dynamicImage").css({
+                            "width": "100%",
+                            "height": "auto"
+                        });
+                    }
+                    $("#dynamicImage").attr("src", img.src); // 设置图片源路径为动图
+                };
                 ok = true;
             });
         });
